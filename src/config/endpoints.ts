@@ -23,6 +23,10 @@ export const CONFIG = {
     
     // 2-hour weather forecast by planning area
     twoHourForecast: 'https://api-open.data.gov.sg/v2/real-time/api/two-hr-forecast',
+
+    // API Health Check endpoints
+    health: '/api/health',
+    healthDetailed: '/api/health?detailed=true',
   },
 
   // Map Basemaps

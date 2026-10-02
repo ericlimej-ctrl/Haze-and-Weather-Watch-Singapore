@@ -14,6 +14,7 @@ import { RegionModal } from './components/RegionModal';
 import { TwoHourForecastList } from './components/TwoHourForecastList';
 import { BottomSheet } from './components/BottomSheet';
 import { Footer } from './components/Footer';
+import { ApiHealthModal } from './components/ApiHealthModal';
 
 import {
   ActiveLayer,
@@ -68,6 +69,9 @@ export default function App() {
 
   // Demo storm simulation toggle
   const [isSimulatedDemo, setIsSimulatedDemo] = useState<boolean>(false);
+
+  // API Health modal toggle
+  const [isHealthModalOpen, setIsHealthModalOpen] = useState<boolean>(false);
 
   // Fetch all data
   const loadWeatherData = useCallback(async (isManualRefresh = false) => {
@@ -176,6 +180,7 @@ export default function App() {
         onRefresh={() => loadWeatherData(true)}
         nextRefreshSeconds={countdown}
         hasError={hasError}
+        onOpenHealthModal={() => setIsHealthModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -267,6 +272,12 @@ export default function App() {
       <RegionModal
         region={selectedRegion}
         onClose={() => setSelectedRegionId(null)}
+      />
+
+      {/* API Health & Upstream Latency Modal */}
+      <ApiHealthModal
+        isOpen={isHealthModalOpen}
+        onClose={() => setIsHealthModalOpen(false)}
       />
 
       {/* 5. Attribution Footer */}

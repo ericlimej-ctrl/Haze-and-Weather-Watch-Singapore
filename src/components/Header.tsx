@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshCw, Radio, Wind, AlertCircle } from 'lucide-react';
+import { RefreshCw, Radio, Wind, AlertCircle, Activity } from 'lucide-react';
 import { formatToSGT } from '../utils/advisory';
 
 interface HeaderProps {
@@ -8,6 +8,7 @@ interface HeaderProps {
   onRefresh: () => void;
   nextRefreshSeconds: number;
   hasError: boolean;
+  onOpenHealthModal: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -16,6 +17,7 @@ export const Header: React.FC<HeaderProps> = ({
   onRefresh,
   nextRefreshSeconds,
   hasError,
+  onOpenHealthModal,
 }) => {
   const minutes = Math.floor(nextRefreshSeconds / 60);
   const seconds = nextRefreshSeconds % 60;
@@ -45,9 +47,19 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Status & Actions */}
-        <div className="flex items-center space-x-2 sm:space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-3">
+          {/* API Health Button */}
+          <button
+            onClick={onOpenHealthModal}
+            title="Inspect API health & upstream latencies"
+            className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg border border-slate-700 transition flex items-center space-x-1.5 text-xs font-medium cursor-pointer"
+          >
+            <Activity className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="hidden sm:inline">API Health</span>
+          </button>
+
           {/* Live Indicator & Timestamp */}
-          <div className="flex flex-col items-end text-right">
+          <div className="flex flex-col items-end text-right pl-1 sm:pl-2 border-l border-slate-800">
             <div className="flex items-center space-x-1.5">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
