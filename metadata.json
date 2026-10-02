@@ -1,0 +1,6 @@
+{
+  "name": "SG Weather & Haze Watch",
+  "description": "Live regional maps of Singapore for haze (24-hour PSI and 1-hour PM2.5), rainfall, and lightning powered by NEA real-time open data.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
